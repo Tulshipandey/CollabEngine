@@ -1,0 +1,20 @@
+{
+  "name": "collabengine_backend",
+  "version": "1.0.0",
+  "description": "Your perfect tech partner awaits.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js" ,
+    "dev" : "nodemon src/app.js"
+  },
+  "keywords": [
+    "Node.js",
+    "MongoDB",
+    "Express.js"
+  ],
+  "author": "Tulshi Pandey",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
