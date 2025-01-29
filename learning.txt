@@ -1,0 +1,74 @@
+
+// episode 4 learning royte and route handling and API testing by  POSTMAN
+
+app.use("/user" , (req ,res) => {
+   res.send("on every HTTP request , only this request handler will run") ;
+})
+//dynamic routing function where routes are defined dynamically in api testing environment we write this api /user/101/Tulshi@123 ;
+
+app.get("/user/:UserID/:Password", (req ,res) => {
+   console.log(req.params) ;
+   res.send({UserID : req.params.UserID , Password : req.params.Password}) ;
+})
+
+app.get("/user" , (req , res) => {
+   console.log(req.query) ;  // request query from API testing
+   res.send({firstname : "Tulshi" , lastname : "Pandey"}) ;
+})
+
+app.post("/user" , (req , res) => {
+   res.send("Data saved to database succesfully") ;
+})
+
+app.delete("/user" , (req , res) => {
+   res.send("Data deleted from database succesfully") ;
+})
+
+app.put("/user" , (req , res) => {
+   res.send("Data updated to database succesfully") ;
+})
+
+// if we put the /test/2 before /test then it will not work.
+// because the first match will be executed
+// so the order of the routers are very important.
+
+
+app.use("/test/2" , (req , res) => {
+   res.send("hello from the test2 server") ;
+ })
+
+ app.use("/test" , (req , res) => {
+    res.send("Hello from the server") ;
+ })
+
+
+ app.use("/dashboard" , (req , res) => {
+    res.send("Welcome to the dashboard") ;
+ })
+ app.use("/" , (req , res) =>{
+   res.send("Hello Tulshi from the server") ;
+ })
+
+ // route handling  episode 5
+
+
+ app.get("/route" , (req , res , next) => {
+   console.log("route handling 1") ;
+   // res.send("1st request") ;
+   next() ;
+} , [(req , res , next) => {
+   console.log("route handling 2") ;
+   // res.send("2nd request") ;
+   next() ;
+
+} , (req , res , next) => {
+   console.log("route handling 3") ;
+   // res.send("3rd request") ;
+   next() ;
+
+}] , (req , res , next) => {
+   console.log("route handling 4") ;
+   res.send("4th request") ;
+   
+}) ;
+ 
